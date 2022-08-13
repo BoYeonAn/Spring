@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>입력하신 내용은</h1>
+<p id=dataArea>이곳</p>
+<h1>으로 출력됩니다.</h1>
+<textarea id=toSay>하고싶은 말을 적어주세요</textarea>
+<button onclick="submit()">저장</button>
+<script>
+function submit(){
+	var p=document.getElementById('dataArea');
+	var text=document.getElementById('toSay');
+	var textNode=document.createTextNode(text.value);
+	p.removeChild(p.childNodes[0]);
+	p.appendChild(textNode);
+	text.value='';
+}
+
+</script>
+
+</body>
+</html>

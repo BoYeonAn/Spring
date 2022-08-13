@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+var info=navigator.userAgent.toLowerCase();
+var message=null;
+if(info.indexOf('window')>=0){
+	message="윈도우에서 접속중";
+}else if(info.indexOf('macintosh')>=0){
+	message="맥OS에서 접속중";
+}else if(info.indexOf('iphone')>=0){
+	message="아이폰에서 접속중";
+}else if(info.indexOf('android')>=0){
+	message="안드로이드에서 접속중";
+}
+document.write(message,"<br>");
+var scr_width=screen.sidth;
+var scr_height=screen.height;
+document.write('기기 모니터 넓이'+ scr_width+"px","<br>");
+document.write('기기 모니터 높이'+ scr_height+"px","<br>");
+document.write('서버도메인 이름'+ location.hostname,"<br>");
+document.write('서버 포트 번호'+ location.port,"<br>");
+document.write('url경로'+ location.pathname);
+
+</script>
+</body>
+</html>

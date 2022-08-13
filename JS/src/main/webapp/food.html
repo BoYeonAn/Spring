@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>내가 좋아하는 단어</h3>
+<span>chelsea FC</span>,핑크, <span>블랙</span>,<span>마라탕</span>
+치킨,피자, 커피, 초코 <span>real madrid</span>
+<span>라면</span>,거절
+<button onclick="change()">좋아하는 단어 추출</button>
+<script>
+var spans=document.getElementsByTagName("span");
+function change(){
+for(var i=0; i<spans.length; i++){
+	var span=spans[i];
+	span.style.color="red";
+	span.style.fontSize="15px";
+}
+}
+
+</script>
+
+
+</body>
+</html>

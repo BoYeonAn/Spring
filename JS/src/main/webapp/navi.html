@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+var site=prompt("네이버, 다음, 구글, 네이트중 가고싶은 사이트를 입력해주세요");
+var url;
+switch(site){
+case'네이버': url="www.naver.com";
+break;
+case '다음': url="www.daum.net";
+break;
+case '구글': url="www.google.com";
+break;
+case '네이트': url="www.nate.com";
+break;
+default : alert("보기 중에없는 사이트입니다.");
+	window.open("",'_self').close();
+}
+if(url) location.href="http://"+url;
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<p id=area>
+<script>
+var i=0;
+var variable = setInterval(function(){
+i++;
+document.getElementById('area').append(i);
+},1000);
+
+
+
+</script>
+</p>
+<button onclick="clearInterval(variable)">정지</button>
+</body>
+</html>

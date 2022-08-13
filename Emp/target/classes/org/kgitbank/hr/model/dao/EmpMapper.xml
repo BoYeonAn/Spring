@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "..//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kgitbank.hr.model.dao.IEmpRepository">
+<resultMap id="empMap" type="org.kgitbank.hr.model.vo.EmpVO">
+<result property="employeeId" column="employee_id"/>
+<result property="firstName" column="first_name"/>
+<result property="lastName" column="last_name"/>
+<result property="email" column="email"/>
+<result property="phoneNumber" column="phone_number"/>
+<result property="hireDate" column="hire_date"/>
+<result property="jobId" column="job_id"/>
+<result property="salary" column="salary"/>
+<result property="commissionPct" column="commission_pct"/>
+<result property="managerId" column="manager_id"/>
+<result property="departmentId" column="department_id"/>
+
+</resultMap>
+<select id="getEmpList" resultMap="empMap">
+select * from employees
+</select>
+
+<select id="getEmpInfo" parameterType="int" resultType="org.kgitbank.hr.model.vo.EmpDetailVO">
+select  employee_id as employeeId,
+		first_name as firstName,
+		last_name as lastName,
+		email as email,
+		phone_number as phoneNumber,
+		hire_date as hireDate,
+		e.job_id as jobId,
+		salary,
+		commission_pct as commissionPct,
+		e.manager_id as managerId,
+		e.department_id as departmentId,
+		job_title as jobTitle,
+		manager_name as managerName,
+		department_name as departmentName
+		from employees e
+		left join jobs j
+		on e.job_id=j.job_id
+		left join (select employee_id as manager_id, first_name||' '||last_name as manager_name from employees
+		where employee_id in (select distinct manager_id from employees)) m
+		on e.manager_id=m.manager_id
+		left join departments d
+		on e.department_id=d.department_id
+		where employee_id= #{empId} 
+</select>
+
+
+<select id="getEmpListByDeptId" parameterType="int" resultMap="empMap">
+select*from employees where department_id=#{deptId}
+</select>
+<select id="getJobList" resultType="org.kgitbank.hr.model.vo.JobVO">
+select  job_id as jobId,
+		job_title as jobTitle
+		from jobs
+
+</select>
+<select id="getManagerList" resultType="org.kgitbank.hr.model.vo.EmpVO">
+select employee_id as employeeId,
+  		first_name||' '||last_name as firstName
+  		from employees
+  		where employee_id in
+  		(select distinct manager_id from employees)
+</select>
+<select id="getDeptList" resultType="org.kgitbank.hr.model.vo.DeptVO">
+select department_id as departmentId,
+		department_name as departmentName
+		from departments
+</select>
+<insert id="insertEmp" parameterType="org.kgitbank.hr.model.vo.EmpVO">
+insert into employees values(#{employeeId},#{firstName},#{lastName},#{email},#{phoneNumber},#{hireDate},#{jobId},#{salary},#{commissionPct},#{managerId},#{departmentId})
+</insert>
+
+<update id="updateEmp" parameterType="org.kgitbank.hr.model.vo.EmpVO">
+update employees set first_name=#{firstName}, last_name=#{lastName}, email=#{email},
+phone_number=#{phoneNumber}, hire_date=#{hireDate}, job_id=#{jobId}, salary=#{salary},
+commission_pct=#{commissionPct}, manager_id=#{managerId}, department_id=#{departmentId}
+where employee_id=#{employeeId}
+</update>
+
+<insert id="insertJob" parameterType="org.kgitbank.hr.model.vo.JobVO">
+insert into jobs values(#{jobId}, #{jobTitle},null,null)
+</insert>
+<select id="getJobInfo" parameterType="String" resultType="org.kgitbank.hr.model.vo.JobVO">
+select job_id as jobId,	
+		job_title as jobTitle,
+		min_salary as minSalary,
+		max_salary as maxSalary
+		from jobs
+		where job_id = #{jobId}
+</select>
+
+<delete id="deleteEmp" parameterType="int">
+delete from employee where employee_id=#{empId}
+</delete>
+
+<select id="getLocaList" resultType="org.kgitbank.hr.model.vo.LocationVO">
+select location_id as locationId, city from locations
+</select>
+
+</mapper>

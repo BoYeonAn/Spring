@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+</head>
+<body>
+<h2>개인정보 입력</h2>
+<p id="name"><label for="user_name">이름:</label><input type=text id="user_name"></p>
+<p id="tel"><label for="user_tel">연락처:</label><input type=text id="user_tel"></p>
+<p id="lang">
+<span id="user_lang">주언어:</span>
+<input type=checkbox id="ch1" value="JAVA">
+<label for="ch1">JAVA</label>
+<input type=checkbox id="ch2" value="JAVASCRIPT">
+<label for="ch2">JAVASCRIPT</label>
+<input type=checkbox id="ch3" value="Spring">
+<label for="ch3">Spring</label>
+</p>
+<button id="print">입력 값 출력</button>
+<script>
+$(function(){
+	$("#print").click(function(){
+	var name=$("#user_name").val();
+	var tel=$("#user_tel").val();
+	var result="";
+	for(var i=0; i<$("input").length;i++){
+		if($("#ch"+(i+1)).prop("checked")){
+		result +=$("#ch"+(i+1)).val()+"";
+		}
+	}
+	$("#name").children().remove();
+	$("#name").text("입력하신 이름:"+name);
+	$("#tel").children().remove();
+	$("#tel").text("입력하신 번호:"+tel);
+	$("#lang").children().remove();
+	$("#lang").text("선택한 값:"+result);
+	
+		
+	});
+	});
+
+
+</script>
+
+</body>
+</html>

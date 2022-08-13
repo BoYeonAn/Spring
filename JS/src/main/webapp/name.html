@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td id=td1></td></tr>
+<tr><td id=td2></td></tr>
+<tr><td id=td3></td></tr>
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script>
+$(function(){
+	var obj=[{"name":"안보연"},{"name":"이종석"},{"name":"송중기"}];
+	$(obj).each(function(i,o){
+	$("#td"+(i+1)).append("이름:"+o.name);	
+});
+});
+
+
+
+</script>
+
+</body>
+</html>

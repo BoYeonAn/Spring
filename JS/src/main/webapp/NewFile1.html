@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<title>Insert title here</title>
+</head>
+<style>
+body{
+height:10000px;
+width: 50000px;
+}
+#wrap{
+position:fixed;
+left:150px;
+top:150px;
+}
+</style>
+<body>
+<div id=wrap>
+<p>Top:<span class=top>0</span>px</p>
+<p>Left:<span class=left>0</span>px</p>
+</div>
+<select id=favorite>
+<option value="">선택깂</option>
+<option value="strawberry">딸기</option>
+<option value="chelsea">첼시</option>
+<option value="colorado">콜로라도</option>
+<option value="Detroit">디트로이트</option>
+</select>
+<p id=txt></p>
+<input type=text name=word id=word><br>
+<p id=printword></p>
+<p id=txt2></p>
+
+<script>
+$(function(){
+	$("#favortie").change(function(){
+	$("#txt").text($(this).val());	
+	});
+});
+$(window).on("scroll",function(){
+	var left=$(this).scrollLeft();
+	var top=$(this).scrollTop();
+	$(".top").text(top);
+	$(".left").text(left);
+});
+$(function(){
+	$(document).keyup(function(k){
+		$("#txt2").text(k.keyCode);
+		$("#printword").text($("#word").val());
+	});
+});
+
+
+</script>
+</body>
+</html>
